@@ -29,35 +29,38 @@ import java.math.*;
 import java.util.regex.*;
 
 public class Solution {
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String time = in.next();
-        String hour = "010203040506070809101112131415161718192021222300";
-        String result = "";
+    
+    public static String hour = "010203040506070809101112131415161718192021222300";
+    
+    public static String convertTime(String string){
         int index;
-        
-        if(time.charAt(8) == 'A'){
-            if(time.substring(0, 2).equals(hour.substring(22, 24))){
-                result = "00" + time.substring(2, 8);
+        if(string.charAt(8) == 'A'){
+            if(string.substring(0, 2).equals(hour.substring(22, 24))){
+                return "00" + string.substring(2, 8);
             }
             else{
-                result = time.substring(0, 8);
+                return string.substring(0, 8);
             }
         }
         else{
-            if(time.substring(0, 2).equals(hour.substring(22, 24))){
-                result = time.substring(0, 8);
+            if(string.substring(0, 2).equals(hour.substring(22, 24))){
+                return string.substring(0, 8);
             }
             else{
                 for(int i = 0; i < 24; i += 2){
-                    if(time.substring(0, 2).equals(hour.substring(i, (i + 2)))){
-                        result = hour.substring((i + 24), (i + 26)) + time.substring(2, 8);
+                    if(string.substring(0, 2).equals(hour.substring(i, (i + 2)))){
+                        return hour.substring((i + 24), (i + 26)) + string.substring(2, 8);
                     }
                 }
             }
         }
+        return "";
+    }
 
-        System.out.println(result);
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String time = in.next();
+
+        System.out.println(convertTime(time));
     }
 }
